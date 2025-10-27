@@ -4,19 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos - ONG Patinhas de Amor</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header>
-    <h1>ONG Patinhas de Amor</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- Header -->
+    <header>
+        <nav>
+           <div class="logo">🐾 Conheça Nossos Projetos</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projeto.html">Projetos</a></li>
+                <li><a href="cadastro.html" class="active">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
 
   <main>
     <section>
@@ -47,9 +50,12 @@
     </section>
   </main>
 
-  <footer>
-    <p> 2025 ONG Patinhas Felizes - Todos os direitos reservados</p>
-  </footer>
+  <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ONG Patinhas de Amor. Todos os direitos reservados.</p>
+    <p>Feito com ❤️; para transformar vidas</p>
+    </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

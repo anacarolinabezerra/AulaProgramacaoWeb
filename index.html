@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Cadastro de Usuário</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG Patinhas de Amor</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- Header -->
     <header>
-        <h1>ONG Patinhas de Amor</h1>
-    <nav>   
-        <ul> 
-            <li><a href="index.html">Início</a></li>
-            <li><a href="projeto.html">Projeto</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
-        </ul>
-    </nav>
+        <nav>
+           <div class="logo">🐾 ONG Patinhas de Amor</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projeto.html">Projetos</a></li>
+                <li><a href="cadastro.html" class="active">Cadastro</a></li>
+            </ul>
+        </nav>
     </header>
+
     <main>
         <section>
             <h2>Quem Somos</h2>
@@ -41,8 +46,12 @@
 
 
     
+   <!-- Footer -->
     <footer>
         <p>&copy; 2025 ONG Patinhas de Amor. Todos os direitos reservados.</p>
+    <p>Feito com ❤️; para transformar vidas</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
