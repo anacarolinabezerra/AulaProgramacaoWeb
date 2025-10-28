@@ -11,19 +11,19 @@
 <header>
         <nav class="container">
             <div class="logo">🐾 Voluntários</div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <ul id="navMenu">
-                <li><a href="index.html">Início</a></li>
-                <li class="dropdown-container">
-                    <a href="projeto.html">Projetos</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="projeto.html#resgate">Resgate</a></li>
-                        <li><a href="projeto.html#castracao">Castração</a></li>
-                        <li><a href="projeto.html#adocao">Adoção</a></li>
-                    </ul>
-                </li>
-                <li><a href="cadastro.html" class="active">Cadastro</a></li>
-            </ul>
+            <button class="menu-toggle" id="menu-toggle-btn">☰</button>
+          <ul id="navMenu">
+    <li><a href="index.html" class="spa-link">Início</a></li>
+    <li class="dropdown-container">
+        <a href="projeto.html" class="spa-link">Projetos</a>
+        <ul class="dropdown-menu">
+            <li><a href="projeto.html#resgate">Resgate</a></li>
+            <li><a href="projeto.html#castracao">Castração</a></li>
+            <li><a href="projeto.html#adocao">Adoção</a></li>
+        </ul>
+    </li>
+    <li><a href="cadastro.html" class="spa-link active">Cadastro</a></li>
+</ul>
         </nav>
     </header>
 
@@ -34,15 +34,15 @@
         </div>
     </section>
 
-    <main class="container">
+    <main class="container" id="main-content">
         <section class="signup-section">
             <h2>Formulário de Voluntariado</h2>
-
+<div class="error-message" id="errorMessage"></div>
             <div class="success-message" id="successMessage">
                 ✅ Cadastrado com sucesso! O contataremos em breve.
             </div>
 
-            <form id="volunteerForm" onsubmit="handleSubmit(event)">
+            <form id="volunteerForm">
                 
                 <fieldset>
                     <legend>Dados Pessoais</legend>
