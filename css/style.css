@@ -401,7 +401,8 @@ fieldset {
 
 
 /* --- 5d. Feedback (Alertas) --- */
-.success-message {
+.success-message 
+{
     display: none; /* Escondido por padrão, JS vai mostrar na proxima atividade */
     padding: var(--space-sm);
     margin-bottom: var(--space-md);
@@ -411,7 +412,23 @@ fieldset {
     border-radius: var(--border-radius);
     text-align: center;
 }
+/* Estilo para a caixa de erro do formulário */
+.error-message {
+    display: none; /* Começa escondido */
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    background-color: #f8d7da; /* Vermelho claro */
+    color: #721c24; /* Vermelho escuro */
+    border: 1px solid #f5c6cb;
+    border-radius: var(--border-radius);
+}
 
+/* Estilo para a lista de erros dentro da caixa */
+.error-message ul {
+    list-style-position: inside;
+    padding-left: var(--space-xs);
+    margin-bottom: 0;
+}
 /* --- 5e. Badges/Tags --- */
 .badge {
     display: inline-block;
