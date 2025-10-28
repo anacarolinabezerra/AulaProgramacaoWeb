@@ -463,13 +463,12 @@ fieldset {
 }
 
 /* --- 6c. Página Cadastro (cadastro.html) --- */
-/* **** MUDANÇA AQUI *****/
+/* **** MUDEI IMAGEM AQUI, na primeira atividade era outra imagem *****/
 .hero-cadastro {
     /* O gradiente escuro ajuda o texto branco a ter contraste */
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/cachorro-oculos.jpg');
     background-size: cover;
-    /* Ajustei a posição para 'center 30%' (30% do topo)
-    */
+    /* Ajustei a posição para 'center 30%' (30% do topo)*/
     background-position: center 30%;
     color: var(--color-white);
     padding: var(--space-xxl) var(--space-md);
