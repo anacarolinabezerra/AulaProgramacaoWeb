@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ONG Patinhas de Amor</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONG Patinhas de Amor</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Header -->
-    <header>
-        <nav>
-           <div class="logo">🐾 ONG Patinhas de Amor</div>
+<header>
+        <nav class="container">
+            <div class="logo">🐾 ONG Patinhas de Amor</div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul id="navMenu">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projeto.html">Projetos</a></li>
-                <li><a href="cadastro.html" class="active">Cadastro</a></li>
+                <li><a href="index.html" class="active">Início</a></li>
+                <li class="dropdown-container">
+                    <a href="projeto.html">Projetos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projeto.html#resgate">Resgate</a></li>
+                        <li><a href="projeto.html#castracao">Castração</a></li>
+                        <li><a href="projeto.html#adocao">Adoção</a></li>
+                    </ul>
+                </li>
+                <li><a href="cadastro.html">Cadastro</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Quem Somos</h2>
-            <p>Somos uma organização dedicada a regatar animais abandonados e oferecer o melhor tratamento possível para eles até encontrarmos uma nova família para adotá-los. Para esta missão, contamos com a ajuda de voluntários que dedicam tempo e carinho às nossas patinhas resgatadas, e também com doadores que não podem comparecer fisicamente, mas nos ajudam financeiramente com os custos da ONG. Através dos nossos canais de divulgação vocês conseguem acompanhar o dia a dia dos pets, a rotina dos voluntários e comemorar conosco cada vez que um animal resgatado e cuidado por nós é adotado por uma família.</p>
+    <main class="container">
+        <article class="home-section">
+            <div>
+                <h2>Quem Somos</h2>
+                <p>Somos uma organização dedicada a regatar animais abandonados e oferecer o melhor tratamento possível para eles até encontrarmos uma nova família para adotá-los. Para esta missão, contamos com a ajuda de voluntários que dedicam tempo e carinho às nossas patinhas resgatadas, e também com doadores que não podem comparecer fisicamente, mas nos ajudam financeiramente com os custos da ONG.</p>
+                <p>Através dos nossos canais de divulgação vocês conseguem acompanhar o dia a dia dos pets, a rotina dos voluntários e comemorar conosco cada vez que um animal resgatado e cuidado por nós é adotado por uma família.</p>
+            </div>
             <img src="img/inicio.jpeg" alt="Nos ajude a dar a eles uma nova chance!">
-
-        </section>
+        </article>
+        
         <section> 
             <h2>Nossa Missão</h2>
             <p>Proteger e cuidar dos animais abandonados, através de cuidados médicos, alimentação adequada, medicação e castração, promovendo a adoção responsável e conscientizando a sociedade sobre a importância do bem-estar animal. Acima de tudo, acreditamos que todos os animais merecem a chance de fazer parte de uma família e conhecer o verdadeiro amor.</p>
@@ -43,13 +52,10 @@
             </address>
         </section>
     </main>
-
-
     
-   <!-- Footer -->
     <footer>
         <p>&copy; 2025 ONG Patinhas de Amor. Todos os direitos reservados.</p>
-    <p>Feito com ❤️; para transformar vidas</p>
+        <p>Feito com ❤️ para transformar vidas</p>
     </footer>
 
     <script src="script.js"></script>

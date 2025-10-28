@@ -1,109 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro - ONG Patinhas de Amor</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - ONG Patinhas de Amor</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Header -->
-    <header>
-        <nav>
-           <div class="logo">🐾 Voluntários</div>
+<header>
+        <nav class="container">
+            <div class="logo">🐾 Voluntários</div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul id="navMenu">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="projeto.html">Projetos</a></li>
+                <li class="dropdown-container">
+                    <a href="projeto.html">Projetos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projeto.html#resgate">Resgate</a></li>
+                        <li><a href="projeto.html#castracao">Castração</a></li>
+                        <li><a href="projeto.html#adocao">Adoção</a></li>
+                    </ul>
+                </li>
                 <li><a href="cadastro.html" class="active">Cadastro</a></li>
             </ul>
         </nav>
     </header>
 
-   
-    <section class="hero hero-cadastro">
-        <div class="hero-content">
-            <h1>Cadastre-se como Voluntário da ONG Patinhas de Amor</h1>
-            <p>Junte-se a nós e faça a diferença na vida de muitos animais sendo voluntário em nossa ONG! Tenha a chance de ajudar ativamente no resgate, cuidados e processo de adoção de centenas de animais que precisam da nossa ajuda.</p>
+    <section class="hero-cadastro">
+        <div class="hero-content container">
+            <h1>Cadastre-se como Voluntário</h1>
+            <p>Junte-se a nós e faça a diferença na vida de muitos animais sendo voluntário em nossa ONG!</p>
         </div>
     </section>
 
-    <!-- Formulário de Cadastro -->
-    <main>
+    <main class="container">
         <section class="signup-section">
-            <h2>Cadastro de Voluntários da ONG Patinhas de Amor</h2>
-          <div class="success-message" id="successMessage">
+            <h2>Formulário de Voluntariado</h2>
+
+            <div class="success-message" id="successMessage">
                 ✅ Cadastrado com sucesso! O contataremos em breve.
             </div>
+
             <form id="volunteerForm" onsubmit="handleSubmit(event)">
+                
                 <fieldset>
                     <legend>Dados Pessoais</legend>
+                    
                     <div class="form-group">
                         <label for="nome">Nome Completo *</label>
-                        <input type="text" id="nome" name="nome" required>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="email">E-mail *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF *</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="123.456.789-00" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nascimento">Data de Nascimento *</label>
+                        <input type="date" id="nascimento" name="nascimento" required>
+                    </div>
+
                     <div class="form-group">
                         <label for="telefone">Telefone *</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="idade">Idade *</label>
-                        <input type="number" id="idade" name="idade" min="16" max="100" required>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(21) 99999-9999" required maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}">
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <legend>Disponibilidade</legend>
+                    <legend>Endereço</legend>
+
                     <div class="form-group">
-                        <label for="disponibilidade">Quando você consegue ajudar? *</label>
-                        <select id="disponibilidade" name="disponibilidade" required>
-                            <option value="">Selecione...</option>
-                            <option value="fins-de-semana">Fins de semana</option>
-                            <option value="dias-uteis">Dias úteis</option>
-                            <option value="flexivel">Horário flexível</option>
-                            <option value="pontual">Ações pontuais</option>
-                        </select>
+                        <label for="cep">CEP *</label>
+                        <input type="text" id="cep" name="cep" placeholder="12345-678" required maxlength="9" pattern="\d{5}-\d{3}">
                     </div>
+
+                    <div class="form-group">
+                        <label for="endereco">Endereço (Rua, N°) *</label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado *</label>
+                        <input type="text" id="estado" name="estado" placeholder="Ex: RJ" required maxlength="2">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Interesse de Voluntariado</legend>
                     <div class="form-group">
                         <label for="area-interesse">Área de Interesse *</label>
                         <select id="area-interesse" name="area-interesse" required>
                             <option value="">Selecione...</option>
-                            <option value="alimentos">Arrecadação de Alimentos Para os Animais</option>
-                            <option value="castracao">Castração e Cuidados Veterinários</option>
-                            <option value="feiras">Organização e Participação nas Feiras de Adoção</option>
+                            <option value="alimentos">Arrecadação de Alimentos</option>
+                            <option value="castracao">Cuidados Veterinários</option>
+                            <option value="feiras">Feiras de Adoção</option>
                             <option value="administrativo">Apoio Administrativo</option>
-                            <option value="qualquer">Qualquer área</option>
                         </select>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Informações Adicionais</legend>
-                    <div class="form-group">
-                        <label for="experiencia">Você já foi voluntário de alguma organização antes?</label>
-                        <textarea id="experiencia" name="experiencia" placeholder="Conte-nos como foi sua experiência..."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="motivacao">Por que você quer ser voluntário?</label>
-                        <textarea id="motivacao" name="motivacao" placeholder="Compartilhe sua motivação..."></textarea>
+                        <textarea id="motivacao" name="motivacao" rows="4" placeholder="Compartilhe sua motivação..."></textarea>
                     </div>
                 </fieldset>
-
-                <button type="submit" class="btn-primary">Enviar Cadastro</button>
+                
+                <button type="submit" class="btn btn-primary">Enviar Cadastro</button>
+                <button type="reset" class="btn btn-secondary">Limpar</button>
             </form>
-           
+
+            <div class="form-image-container">
+                <img src="img/patinhas-deamor.jpg" alt="Patinha de cachorro com voluntário">
+                <p>Sejam voluntários, vocês são a alma da ONG e nossas Patinhas precisam de vocês</p>
+            </div>
+
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 ONG Patinhas de Amor. Todos os direitos reservados.</p>
-    <p>Feito com ❤️; para transformar vidas</p>
+        <p>Feito com ❤️ para transformar vidas</p>
     </footer>
 
     <script src="script.js"></script>
