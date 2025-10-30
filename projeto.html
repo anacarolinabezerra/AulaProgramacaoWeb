@@ -9,72 +9,79 @@
 <body>
 
 <header>
-        <nav class="container">
-            <div class="logo">🐾 Conheça Nossos Projetos</div>
-            <button class="menu-toggle" id="menu-toggle-btn">☰</button>
-            <ul id="navMenu">
-    <li><a href="index.html" class="spa-link">Início</a></li>
-    <li class="dropdown-container">
-        <a href="projeto.html" class="spa-link active">Projetos</a>
-        <ul class="dropdown-menu">
-            <li><a href="projeto.html#resgate">Resgate</a></li>
-            <li><a href="projeto.html#castracao">Castração</a></li>
-            <li><a href="projeto.html#adocao">Adoção</a></li>
+    <nav class="container">
+        <div class="logo">🐾 Conheça Nossos Projetos</div>
+        
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Alternar modo claro/escuro">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+        
+        <ul id="navMenu">
+            <li><a href="index.html" class="spa-link">Início</a></li>
+            <li class="dropdown-container">
+                <a href="projeto.html" class="spa-link active">Projetos</a>
+                <ul class="dropdown-menu">
+                    <li><a href="projeto.html#resgate">Resgate</a></li>
+                    <li><a href="projeto.html#castracao">Castração</a></li>
+                    <li><a href="projeto.html#adocao">Adoção</a></li>
+                </ul>
+            </li>
+            <li><a href="cadastro.html" class="spa-link">Cadastro</a></li>
         </ul>
-    </li>
-    <li><a href="cadastro.html" class="spa-link">Cadastro</a></li>
-</ul>
-        </nav>
-    </header>
+    </nav>
+</header>
 
-    <main class="container" id="main-content">
-        <section>
-            <h2>Nossos Projetos</h2>
+<main class="container" id="main-content" aria-live="polite">
+    <section>
+        <h2>Nossos Projetos</h2>
+        
+        <div class="projetos-grid">
             
-            <div class="projetos-grid">
-                
-                <article class="card" id="resgate">
-                    <img src="img/resgate.jpeg" alt="Equipe da ONG resgatando um cão">
-                    <div class="card-content">
-                        <h3>Resgate de Animais</h3>
-                        <span class="badge badge-urgente">Urgente</span>
-                        <p>Realizamos o resgate de animais abandonados e vítimas de maus-tratos, garantindo atendimento veterinário e abrigo seguro. Chegamos até estes animais através de denúncias e informações enviadas aos nossos canais de comunicação.</p>
-                    </div>
-                </article>
+            <article class="card" id="resgate">
+                <img src="img/resgate.jpeg" alt="Equipe da ONG resgatando um cão">
+                <div class="card-content">
+                    <h3>Resgate de Animais</h3>
+                    <span class="badge badge-urgente">Urgente</span>
+                    <p>Realizamos o resgate de animais abandonados e vítimas de maus-tratos, garantindo atendimento veterinário e abrigo seguro. Chegamos até estes animais através de denúncias e informações enviadas aos nossos canais de comunicação.</p>
+                </div>
+            </article>
 
-                <article class="card" id="castracao">
-                    <img src="img/castracao.jpeg" alt="Veterinário realizando castração de um gato">
-                    <div class="card-content">
-                        <h3>Castração Solidária</h3>
-                        <span class="badge badge-essencial">Essencial</span>
-                        <p>Promovemos em nossa ONG campanhas de castração com preços acessíveis e, em alguns casos, gratuitos, para evitar a reprodução descontrolada dos animais. Também promovemos ações informativas para que as pessoas entendam mais sobre este tema.</p>
-                    </div>
-                </article>
+            <article class="card" id="castracao">
+                <img src="img/castracao.jpeg" alt="Veterinário realizando castração de um gato">
+                <div class="card-content">
+                    <h3>Castração Solidária</h3>
+                    <span class="badge badge-essencial">Essencial</span>
+                    <p>Promovemos em nossa ONG campanhas de castração com preços acessíveis e, em alguns casos, gratuitos, para evitar a reprodução descontrolada dos animais. Também promovemos ações informativas para que as pessoas entendam mais sobre este tema.</p>
+                </div>
+            </article>
 
-                <article class="card" id="adocao">
-                    <img src="img/adocao.jpeg" alt="Feira de adoção com cães e gatos">
-                    <div class="card-content">
-                        <h3>Feiras de Adoção</h3>
-                        <span class="badge badge-info">Participe</span>
-                        <p>Organizamos feiras quinzenais para promover a adoção responsável de cães e gatos já tratados, castrados e vacinados. Prontos para dar e receber amor! Para adotar, basta ir até uma de nossas feiras ou entrar em contato.</p>
-                    </div>
-                </article>
-                
-            </div>
-        </section>
+            <article class="card" id="adocao">
+                <img src="img/adocao.jpeg" alt="Feira de adoção com cães e gatos">
+                <div class="card-content">
+                    <h3>Feiras de Adoção</h3>
+                    <span class="badge badge-info">Participe</span>
+                    <p>Organizamos feiras quinzenais para promover a adoção responsável de cães e gatos já tratados, castrados e vacinados. Prontos para dar e receber amor! Para adotar, basta ir até uma de nossas feiras ou entrar em contato.</p>
+                </div>
+            </article>
+            
+        </div>
+    </section>
 
-        <section>
-            <h2>Seja um Voluntário</h2>
-            <p>Você ama animais e quer fazer a diferença? Participe das nossas ações e ajude a transformar vidas! Para nos ajudar, basta clicar no botão abaixo e cadastrar-se como voluntário.</p>
-            <a href="cadastro.html" class="btn btn-primary spa-link">Cadastre-se aqui</a>
-        </section>
-    </main>
+    <section>
+        <h2>Seja um Voluntário</h2>
+        <p>Você ama animais e quer fazer a diferença? Participe das nossas ações e ajude a transformar vidas! Para nos ajudar, basta clicar no botão abaixo e cadastrar-se como voluntário.</p>
+        <a href="cadastro.html" class="btn btn-primary spa-link">Cadastre-se aqui</a>
+    </section>
+</main>
 
-    <footer>
-        <p>&copy; 2025 ONG Patinhas de Amor. Todos os direitos reservados.</p>
-        <p>Feito com ❤️ para transformar vidas</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 ONG Patinhas de Amor. Todos os direitos reservados.</p>
+    <p>Feito com ❤️ para transformar vidas</p>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

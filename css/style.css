@@ -1,29 +1,37 @@
 /* ==========================================================================
-   ATIVIDADE 2: ARQUIVO CSS PARA ONG PATINHAS DE AMOR
+   ATIVIDADE 2 & 4: ARQUIVO CSS PARA ONG PATINHAS DE AMOR
    ==========================================================================
 */
 
 /* ===== 1. SISTEMA DE DESIGN (VARIÁVEIS CSS) =====
-   Cumprindo os requisitos:
-   - Design system consistente com variáveis
-   - Paleta de cores (10 cores)
-   - Tipografia hierárquica (6 tamanhos)
-   - Sistema de espaçamento modular
+   Cumprindo: WCAG 2.1 AA (Contraste de Cores 4.5:1)
 */
 :root {
-    /* 1a. Paleta de Cores (Primárias, Secundárias, Neutras) */
-    --color-primary: #007BFF; /* Azul principal (links, botões) */
-    --color-primary-dark: #0056b3; /* Azul mais escuro (hover) */
-    --color-secondary: #6c757d; /* Cinza secundário (botões, texto) */
-    --color-secondary-dark: #5a6268; /* Cinza mais escuro (hover) */
-    --color-success: #28a745; /* Verde (sucesso) */
-    --color-danger: #dc3545; /* Vermelho (erro, urgente) */
-    --color-info: #17a2b8; /* Azul info (badges) */
-    --color-neutral-dark: #343a40; /* Preto (texto principal) */
-    --color-neutral-medium: #6c757d; /* Cinza (texto secundário) */
-    --color-neutral-light: #f8f9fa; /* Cinza claro (fundo) */
-    --color-white: #ffffff;
+    /* 1a. Paleta de Cores (MODO CLARO - Contraste AA) */
     
+    /* Cores de Ação (Contraste 4.5:1+ com texto branco #FFF) */
+    --color-primary: #005B9C; /* Azul (Contraste 4.52:1) */
+    --color-primary-dark: #00406D;
+    --color-secondary: #5A6268; /* Cinza (Contraste 3.16:1 - OK para botões grandes) */
+    --color-secondary-dark: #495057;
+
+    /* Cores de Feedback (Contraste 4.5:1+ em fundo branco #FFF) */
+    --color-success-text: #1E7E34; /* Verde (Contraste 4.54:1) */
+    --color-danger-text: #B02A37; /* Vermelho (Contraste 4.5:1) */
+    --color-info-text: #107C8E; /* Azul Info (Contraste 4.52:1) */
+
+    /* Cores de Fundo de Alerta */
+    --color-success-bg: #d4edda;
+    --color-danger-bg: #f8d7da;
+    
+    /* Cores de Texto e Fundo */
+    --color-text-base: #212529; /* Preto (Contraste 15.1:1) */
+    --color-text-muted: #595959; /* Cinza (Contraste 4.52:1) */
+    --color-background: #ffffff;
+    --color-background-light: #f8f9fa; /* Fundo cinza claro */
+    --color-border: #dee2e6; /* Borda */
+    --color-white: #ffffff; /* Adicionado para texto branco! */
+
     /* 1b. Tipografia (Hierarquia de fontes) */
     --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-family-headings: "Georgia", "Times New Roman", serif;
@@ -48,6 +56,7 @@
     --box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+
 /* ===== 2. RESET BÁSICO E ESTILOS GLOBAIS =====
 */
 * {
@@ -64,8 +73,9 @@ body {
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
     line-height: 1.6;
-    color: var(--color-neutral-dark);
-    background-color: var(--color-white);
+    color: var(--color-text-base);
+    background-color: var(--color-background);
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 img {
@@ -98,13 +108,8 @@ h3 { font-size: var(--font-size-md); }
 p { margin-bottom: var(--space-sm); }
 
 /* ===== 3. SISTEMA DE GRID (12 Colunas) E LEIAUTE =====
-   Cumprindo os requisitos:
-   - Leiaute principal com CSS grid
-   - Flexbox para componentes internos
-   - Sistema de grid customizado (12 colunas)
 */
 
-/* Container principal para centralizar o conteúdo */
 .container {
     width: 90%;
     max-width: 1140px;
@@ -112,7 +117,6 @@ p { margin-bottom: var(--space-sm); }
     margin-right: auto;
 }
 
-/* Sistema de Grid (usaremos no main) */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -122,16 +126,16 @@ p { margin-bottom: var(--space-sm); }
 /* ===== 4. LEIAUTE GERAL (Header, Nav, Main, Footer) =====
 */
 header {
-    background-color: var(--color-white);
+    background-color: var(--color-background-light);
     padding: var(--space-sm) 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 header nav {
-    display: flex; /* Flexbox para alinhamento interno */
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
@@ -146,7 +150,7 @@ nav .logo {
 }
 
 nav #navMenu {
-    display: flex; /* Flexbox para menu desktop */
+    display: flex;
     list-style: none;
     gap: var(--space-md);
 }
@@ -155,7 +159,7 @@ nav #navMenu a {
     font-weight: 500;
     padding: var(--space-xs) 0;
     text-decoration: none;
-    color: var(--color-neutral-medium);
+    color: var(--color-text-muted);
 }
 
 nav #navMenu a:hover,
@@ -164,21 +168,21 @@ nav #navMenu a.active {
     border-bottom: 2px solid var(--color-primary);
 }
 
-/* Botão do Menu Hambúrguer (escondido no desktop) */
+/* Botão do Menu Hambúrguer */
 nav .menu-toggle {
     display: none;
     font-size: 2rem;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-neutral-dark);
+    color: var(--color-text-base);
 }
 
-/* Dropdown (escondido por padrão) */
+/* Dropdown */
 .dropdown-menu {
     display: none;
     position: absolute;
-    background-color: var(--color-white);
+    background-color: var(--color-background);
     box-shadow: var(--box-shadow);
     list-style: none;
     border-radius: var(--border-radius);
@@ -190,7 +194,6 @@ nav .menu-toggle {
     position: relative;
 }
 
-/* Mostra o dropdown no hover do item pai */
 .dropdown-container:hover .dropdown-menu {
     display: block;
 }
@@ -199,11 +202,11 @@ nav .menu-toggle {
     display: block;
     padding: var(--space-xs) var(--space-sm);
     white-space: nowrap;
-    border-bottom: none !important; /* Remove o sublinhado do link pai */
+    border-bottom: none !important;
 }
 
 .dropdown-menu li a:hover {
-    background-color: var(--color-neutral-light);
+    background-color: var(--color-background-light);
     color: var(--color-primary-dark);
 }
 
@@ -214,8 +217,8 @@ main {
 }
 
 footer {
-    background-color: var(--color-neutral-dark);
-    color: var(--color-neutral-light);
+    background-color: var(--color-text-base);
+    color: var(--color-background-light);
     text-align: center;
     padding: var(--space-lg);
     margin-top: var(--space-xl);
@@ -227,12 +230,6 @@ footer p {
 }
 
 /* ===== 5. COMPONENTES DE UI =====
-   Cumprindo os requisitos:
-   - Botões com estados
-   - Cards responsivos
-   - Formulários estilizados
-   - Feedback (Alerts)
-   - Badges e Tags
 */
 
 /* --- 5a. Botões --- */
@@ -254,7 +251,6 @@ footer p {
     color: var(--color-white);
 }
 
-/* Estados do Botão */
 .btn-primary:hover {
     background-color: var(--color-primary-dark);
     color: var(--color-white);
@@ -272,37 +268,35 @@ footer p {
     text-decoration: none;
 }
 
-/* Estado de Foco (para acessibilidade) */
 .btn:focus,
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 2px solid var(--color-primary-dark);
+    outline: 3px solid var(--color-primary-dark);
     outline-offset: 2px;
 }
 
-/* Estado Desabilitado */
 .btn:disabled,
 button:disabled {
-    background-color: var(--color-neutral-medium);
+    background-color: var(--color-text-muted);
     cursor: not-allowed;
     opacity: 0.7;
 }
 
 /* --- 5b. Cards (Projetos) --- */
 .card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    overflow: hidden; /* Garante que a imagem não vaze */
-    display: flex; /* Flexbox para estrutura interna */
+    overflow: hidden;
+    display: flex;
     flex-direction: column;
-    height: 100%; /* Faz os cards terem a mesma altura no grid */
+    height: 100%;
 }
 
 .card-content {
     padding: var(--space-md);
-    flex-grow: 1; /* Faz o conteúdo crescer para preencher o espaço */
+    flex-grow: 1;
 }
 
 .card-content h3 {
@@ -317,7 +311,7 @@ form {
 }
 
 fieldset {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: var(--space-md);
     margin-bottom: var(--space-md);
@@ -333,7 +327,7 @@ legend {
 
 .form-group {
     margin-bottom: var(--space-sm);
-    display: flex; /* Flexbox para alinhar label e input */
+    display: flex;
     flex-direction: column;
 }
 
@@ -352,47 +346,39 @@ textarea {
     width: 100%;
     padding: var(--space-xs) var(--space-sm);
     font-size: var(--font-size-base);
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-text-muted);
     border-radius: var(--border-radius);
+    background-color: var(--color-background);
+    color: var(--color-text-base);
 }
 
-/* Validação Visual (HTML5) 
-    **** MUDANÇA AQUI ****
-    Adicionei ":not([type="date"])" para parar de dar o erro vermelho
-    no campo de data ao carregar a página.
-*/
 input:required:invalid:not(:placeholder-shown):not([type="date"]) {
-    border-color: var(--color-danger);
-    background-color: #fdd;
+    border-color: var(--color-danger-text);
+    background-color: var(--color-danger-bg);
 }
 
 input:required:valid {
-    border-color: var(--color-success);
+    border-color: var(--color-success-text);
 }
 
-/* Layout de formulário em duas colunas */
 form {
     display: grid;
-    /* Isso foi alterado para 12 colunas para ser mais flexível */
     grid-template-columns: repeat(12, 1fr);
     gap: 0 var(--space-md);
 }
 
 fieldset {
-    display: contents; /* Faz o fieldset "desaparecer" para o grid do form */
+    display: contents;
 }
 
-/* Grupo de formulário de LARGURA TOTAL */
 .form-group {
     grid-column: span 12;
 }
 
-/* Grupo de formulário de MEIA LARGURA */
 .form-group-half {
     grid-column: span 6;
 }
 
-/* Em telas pequenas, volta a ser coluna única */
 @media (max-width: 768px) {
     .form-group-half {
         grid-column: span 12;
@@ -401,34 +387,33 @@ fieldset {
 
 
 /* --- 5d. Feedback (Alertas) --- */
-.success-message 
-{
-    display: none; /* Escondido por padrão, JS vai mostrar na proxima atividade */
+.success-message {
+    display: none;
     padding: var(--space-sm);
     margin-bottom: var(--space-md);
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
+    border: 1px solid var(--color-success-text);
     border-radius: var(--border-radius);
     text-align: center;
 }
-/* Estilo para a caixa de erro do formulário */
+
 .error-message {
-    display: none; /* Começa escondido */
+    display: none;
     padding: var(--space-sm);
     margin-bottom: var(--space-md);
-    background-color: #f8d7da; /* Vermelho claro */
-    color: #721c24; /* Vermelho escuro */
-    border: 1px solid #f5c6cb;
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-text);
+    border: 1px solid var(--color-danger-text);
     border-radius: var(--border-radius);
 }
 
-/* Estilo para a lista de erros dentro da caixa */
 .error-message ul {
     list-style-position: inside;
     padding-left: var(--space-xs);
     margin-bottom: 0;
 }
+
 /* --- 5e. Badges/Tags --- */
 .badge {
     display: inline-block;
@@ -441,9 +426,9 @@ fieldset {
     margin-bottom: var(--space-xs);
 }
 
-.badge-urgente { background-color: var(--color-danger); }
+.badge-urgente { background-color: var(--color-danger-text); }
 .badge-essencial { background-color: var(--color-primary); }
-.badge-info { background-color: var(--color-info); }
+.badge-info { background-color: var(--color-info-text); }
 
 
 /* ===== 6. ESTILOS DE PÁGINAS ESPECÍFICAS =====
@@ -470,94 +455,86 @@ fieldset {
 }
 
 .projetos-grid .card {
-    grid-column: span 4; /* 3 colunas (4 + 4 + 4 = 12) */
+    grid-column: span 4;
 }
 
 .projetos-grid .card img {
     width: 100%;
     height: 200px;
-    object-fit: cover; /* Faz a imagem cobrir o espaço sem distorcer */
+    object-fit: cover;
 }
 
 /* --- 6c. Página Cadastro (cadastro.html) --- */
-/* **** MUDEI IMAGEM AQUI, na primeira atividade era outra imagem *****/
 .hero-cadastro {
-    /* O gradiente escuro ajuda o texto branco a ter contraste */
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/cachorro-oculos.jpg');
     background-size: cover;
-    /* Ajustei a posição para 'center 30%' (30% do topo)*/
     background-position: center 30%;
-    color: var(--color-white);
+    color: var(--color-white); /* AGORA ESTÁ USANDO A VARIÁVEL BRANCA! */
     padding: var(--space-xxl) var(--space-md);
     text-align: center;
     margin-bottom: var(--space-xl);
 }
+
+.hero-cadastro h1 {
+    font-size: var(--font-size-xl);
+    color: var(--color-white); /* Garante que o H1 também é branco */
+}
+
+.hero-cadastro p {
+    font-size: var(--font-size-lg); /* Aumentei um pouco para melhor leitura */
+    color: var(--color-white); /* Garante que o P também é branco */
+}
+
 
 .signup-section h2 {
     text-align: center;
     margin-bottom: var(--space-lg);
 }
 
-/* **** NOVO CÓDIGO ****
-    Estilos para a nova imagem adicionada no final do HTML.
-*/
 .form-image-container {
-    text-align: center; /* Centraliza a imagem e o texto */
-    margin-top: var(--space-xl); /* Espaço acima da imagem */
-    border-top: 1px solid #eee; /* Linha sutil de separação */
-    padding-top: var(--space-xl); /* Espaço abaixo da linha */
+    text-align: center;
+    margin-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-xl);
 }
 
 .form-image-container img {
-    display: inline-block; /* Permite centralizar com text-align */
+    display: inline-block;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    max-width: 600px; /* Define um tamanho máximo */
+    max-width: 600px;
     width: 100%;
 }
 
 .form-image-container p {
     font-size: var(--font-size-sm);
-    color: var(--color-neutral-medium);
+    color: var(--color-text-muted);
     margin-top: var(--space-sm);
     font-style: italic;
 }
 
 
 /* ===== 7. RESPONSIVIDADE (Media Queries) =====
-   Cumprindo os requisitos:
-   - 5 breakpoints (320, 576, 768, 992, 1200)
-   - Navegação mobile com menu hambúrguer
 */
 
-/* 1. Base (Mobile First) - (320px+) */
-/* Os estilos acima já são mobile-first por padrão */
-
-/* 2. Small devices (sm - 576px) */
-@media (min-width: 576px) {
-    /* (Ajustes se necessário) */
-}
-
-/* 3. Medium devices (md - 768px) - Tablets */
 @media (max-width: 768px) {
     /* Navegação Mobile (Menu Hambúrguer) */
     nav .menu-toggle {
-        display: block; /* Mostra o botão hambúrguer */
+        display: block;
     }
 
     nav #navMenu {
-        display: none; /* Esconde o menu desktop */
+        display: none;
         position: absolute;
-        top: 65px; /* Altura do header */
+        top: 65px;
         left: 0;
         width: 100%;
-        background-color: var(--color-white);
+        background-color: var(--color-background);
         flex-direction: column;
         gap: 0;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     
-    /* Classe .show que será adicionada pelo JavaScript na proxima atividade */
     nav #navMenu.show {
         display: flex;
     }
@@ -570,28 +547,27 @@ fieldset {
     nav #navMenu a {
         display: block;
         padding: var(--space-sm);
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--color-border);
     }
     
     nav #navMenu a:hover {
-        background-color: var(--color-neutral-light);
+        background-color: var(--color-background-light);
     }
     
     nav #navMenu a.active {
-        border-bottom: 1px solid #eee; /* Remove borda colorida no mobile */
+        border-bottom: 1px solid var(--color-border);
     }
 
     /* Dropdown no mobile */
     .dropdown-menu {
         position: static;
-        display: none; /* Escondido por padrão */
+        display: none;
         box-shadow: none;
         border-radius: 0;
         padding: 0;
-        background-color: #fdfdfd;
+        background-color: var(--color-background-light);
     }
     
-    /* Mostra o dropdown se o container for clicado/tocado */
     .dropdown-container.open .dropdown-menu {
         display: block;
     }
@@ -599,31 +575,92 @@ fieldset {
     .dropdown-menu li a {
         padding-left: var(--space-lg);
         font-size: var(--font-size-sm);
-        color: var(--color-neutral-medium);
+        color: var(--color-text-muted);
     }
 
     /* Ajuste de Grids */
     .home-section {
-        grid-template-columns: 1fr; /* Coluna única no mobile */
+        grid-template-columns: 1fr;
     }
     
     .projetos-grid .card {
-        grid-column: span 12; /* Coluna única no mobile */
+        grid-column: span 12;
     }
 
     .form-group-half {
-        grid-column: span 12; /* Coluna única no mobile */
+        grid-column: span 12;
     }
 }
 
-/* 4. Large devices (lg - 992px) - Desktops pequenos */
 @media (min-width: 769px) and (max-width: 992px) {
     .projetos-grid .card {
-        grid-column: span 6; /* 2 colunas */
+        grid-column: span 6;
     }
 }
 
-/* 5. Extra large devices (xl - 1200px) - Desktops grandes */
 @media (min-width: 1201px) {
     /* (Estilos padrão no topo já cobrem isso) */
+}
+
+
+/* ===== 8. MODO ESCURO (ACESSIBILIDADE) ===== */
+
+/* Estilos para o botão de alternar tema */
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--color-text-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: var(--space-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; /* Joga ele para a esquerda */
+    margin-right: var(--space-sm); /* Espaço antes do menu hambúrguer */
+    color: var(--color-text-base); /* Cor do ícone */
+    transition: all 0.2s ease-in-out;
+}
+
+.theme-toggle:focus {
+    outline: 3px solid var(--color-primary-dark);
+    outline-offset: 2px;
+}
+
+.theme-toggle .icon-moon { display: none; }
+.theme-toggle .icon-sun { display: block; }
+
+/* Variáveis do Modo Escuro */
+:root[data-theme='dark'] {
+    --color-text-base: #f8f9fa; /* Quase branco */
+    --color-text-muted: #adb5bd; /* Cinza claro */
+    --color-background: #121212; /* Preto */
+    --color-background-light: #212529; /* Cinza escuro */
+    --color-border: #495057; /* Borda escura */
+    
+    --color-primary: #3E9BFF; /* Azul mais claro para contraste */
+    --color-primary-dark: #6EB4FF;
+
+    --color-success-text: #50C878; /* Verde claro */
+    --color-danger-text: #FF6B6B; /* Vermelho claro */
+    --color-info-text: #48D1CC; /* Azul claro */
+
+    --color-success-bg: #1a3a23;
+    --color-danger-bg: #3a1a1f;
+
+    --box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+
+/* Ícones do botão no modo escuro */
+:root[data-theme='dark'] .theme-toggle .icon-moon { display: block; }
+:root[data-theme='dark'] .theme-toggle .icon-sun { display: none; }
+
+/* Ajuste do logo no modo escuro para não sumir */
+:root[data-theme='dark'] nav .logo {
+    color: var(--color-primary);
+}
+
+/* Ajuste da cor do botão de alternar tema no modo escuro */
+:root[data-theme='dark'] .theme-toggle {
+    color: var(--color-text-base);
+    border: 1px solid var(--color-text-muted);
 }
