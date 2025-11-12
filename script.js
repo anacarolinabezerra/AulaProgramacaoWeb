@@ -1,6 +1,6 @@
 /* ==========================================================================
    ATIVIDADE 3 & 4: ARQUIVO JAVASCRIPT - ONG PATINHAS DE AMOR
-   (Versão com a lógica de inicialização de scripts CORRIGIDA)
+   (Versão Final Definitiva - Corrige o bug do SPA com links âncora #)
    ==========================================================================
 */
 
@@ -62,44 +62,85 @@ function initSPA() {
 }
 
 
+/**
+ * Carrega o conteúdo de uma nova página e injeta no <main>
+ * (Versão final: agora entende links âncora com '#')
+ */
 async function loadPage(url, isPopState = false) {
     try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Página não encontrada');
+        // --- INÍCIO DA CORREÇÃO ---
+        // 1. Divide a URL no nome da página e na âncora (#)
+        // Ex: "projeto.html#resgate" vira pageUrl="projeto.html" e hash="resgate"
+        const [pageUrl, hash] = url.split('#');
+        // --- FIM DA CORREÇÃO ---
+
+        // 2. Busca o conteúdo da página (ex: "projeto.html")
+        const response = await fetch(pageUrl); // <-- CORRIGIDO: Busca só a página
+        if (!response.ok) throw new Error(`Página não encontrada: ${pageUrl}`);
         
         const htmlString = await response.text();
         
+        // 3. "Parseia" o texto HTML em um documento DOM virtual
         const parser = new DOMParser();
         const newDoc = parser.parseFromString(htmlString, 'text/html');
         
+        // 4. Pega o novo <main> e o novo <title>
         const newMain = newDoc.getElementById('main-content');
         const newTitle = newDoc.title;
 
         if (newMain) {
+            // 5. Injeta o novo conteúdo no <main> da página atual
             document.getElementById('main-content').innerHTML = newMain.innerHTML;
-            document.title = newTitle;
-            updateActiveNav(url);
             
+            // 6. Atualiza o título da página
+            document.title = newTitle;
+            
+            // 7. Atualiza a classe 'active' no menu de navegação
+            updateActiveNav(pageUrl); // <-- CORRIGIDO: Usa pageUrl, e não a url completa
+            
+            // 8. Atualiza a URL na barra do navegador (só se não for um 'popstate')
             if (!isPopState) {
-                history.pushState({ path: url }, newTitle, url);
+                // Salva a URL completa (com o hash) no histórico
+                history.pushState({ path: url }, newTitle, url); 
             }
 
-            // (Re)inicia os scripts APENAS DO <main>
+            // 9. (Re)inicia os scripts do <main> (ex: formulário)
             initPageScripts();
 
-            window.scrollTo(0, 0);
+            // --- INÍCIO DA CORREÇÃO ---
+            // 10. Rola a página para a âncora (#) se ela existir
+            if (hash) {
+                // Encontra o elemento (ex: #resgate)
+                const elementToScroll = document.getElementById(hash);
+                if (elementToScroll) {
+                    // Rola até ele
+                    elementToScroll.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Se não tiver âncora, rola para o topo
+                window.scrollTo(0, 0);
+            }
+            // --- FIM DA CORREÇÃO ---
         }
     } catch (error) {
         console.error('Erro ao carregar página:', error);
     }
 }
 
+/**
+ * Atualiza qual link do menu está com a classe ".active"
+ * (Versão final: agora entende links âncora com '#')
+ */
 function updateActiveNav(url) {
     const navLinks = document.querySelectorAll('nav a.spa-link');
     
+    // Limpa o hash da URL da página atual para comparação
+    // Ex: "projeto.html#resgate" vira "projeto.html"
+    const pageName = url.split('#')[0].split('/').pop();
+
     navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href').split('/').pop();
-        const pageName = url.split('/').pop();
+        // Limpa o hash do link que estamos checando
+        const linkHref = link.getAttribute('href').split('#')[0].split('/').pop();
 
         if (linkHref === pageName) {
             link.classList.add('active');
@@ -142,13 +183,17 @@ function initMobileMenu() {
             // Verifica se está em modo mobile (se o menu-toggle está visível)
             const menuToggle = document.querySelector('.menu-toggle');
             if (menuToggle && window.getComputedStyle(menuToggle).display === 'block') {
-                if (!mainLink.classList.contains('spa-link')) {
-                    event.preventDefault();
-                    document.querySelectorAll('.dropdown-container.open').forEach(c => {
-                        if (c !== container) c.classList.remove('open');
-                    });
-                    container.classList.toggle('open');
-                }
+                
+                // Previne a navegação (seja SPA ou normal)
+                event.preventDefault(); 
+                
+                // Fecha qualquer *outro* dropdown que esteja aberto
+                document.querySelectorAll('.dropdown-container.open').forEach(c => {
+                    if (c !== container) c.classList.remove('open');
+                });
+
+                // Abre ou fecha o *nosso* dropdown
+                container.classList.toggle('open');
             }
         });
     });
